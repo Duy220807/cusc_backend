@@ -15,7 +15,7 @@ return new class extends Migration
 
             // Tạo cột
             $table->increments('id');
-            $table->string('comment')->nullable();
+            $table->string('comment', 1000)->nullable();
             $table->integer('rate');
 
 

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->tinyInteger('is_active',);
             $table->string('name', 255);
             $table->json('meta')->nullable();
-            $table->integer('quantity');
             $table->float('price');
 
 
