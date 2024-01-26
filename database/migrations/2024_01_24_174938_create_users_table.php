@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->boolean('gender')->default(1);
-            $table->dateTime('birthday')->nullable();
+            $table->date('birthday')->nullable();
             $table->text('avatar')->nullable();
-            $table->string('phone', 15)->nullable();
+            $table->string('phone', 50)->nullable();
             $table->string('address', 255)->nullable();
             $table->string('city', 255)->nullable();
             $table->string('district', 255)->nullable();

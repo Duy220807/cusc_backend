@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('comments_profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comment', 1000);
-
+            $table->integer('is_active')->default(1);
 
             // Cột khóa ngoại
             $table->integer('profile_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('reply_to')->unsigned();
+            $table->integer('reply_to')->unsigned()->nullable();
 
             // Tạo liên kết khóa ngoại
             $table->foreign('profile_id')->references('id')->on('users')->cascadeOnDelete();

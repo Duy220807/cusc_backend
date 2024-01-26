@@ -22,7 +22,7 @@ return new class extends Migration
             // Cột khóa ngoại
             $table->integer('user_id')->unsigned();
             $table->integer('picture_id')->unsigned();
-            $table->integer('reply_to')->unsigned();
+            $table->integer('reply_to')->unsigned()->nullable();
 
             // Tạo liên kết khóa ngoại
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

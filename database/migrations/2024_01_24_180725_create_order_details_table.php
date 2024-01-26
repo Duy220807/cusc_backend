@@ -15,7 +15,6 @@ return new class extends Migration
             $table->increments('id');
             $table->float('price');
 
-
             $table->integer('picture_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('order_id')->unsigned();
