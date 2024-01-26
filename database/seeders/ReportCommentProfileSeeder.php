@@ -7,10 +7,10 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PictureSeeder extends Seeder
+class ReportCommentProfileSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds
      */
     public function run(): void
     {
@@ -19,22 +19,21 @@ class PictureSeeder extends Seeder
         $list = [];
 
         $listUsers = DB::table('users')->pluck('id');
-
+        $listCommentsProfiles = DB::table('comments_profiles')->pluck('id');
+        $status = ['Deleted', 'Not Delete'];
         for ($i = 1; $i <= 20; $i++) {
             array_push(
                 $list,
                 [
                     'id' => $i,
-                    'title' => $faker->text(20),
-                    'description' => $faker->text(250),
-                    'is_active' => $faker->numberBetween(1, 1),
-                    'name' => $faker->text(20),
-                    'price' => $faker->randomFloat(1, 50000, 100000),
-                    'user_id' => $faker->randomElement($listUsers)
+                    'description' => $faker->text(255),
+                    'status' => $faker->randomElement($status),
+                    'user_id' => $faker->randomElement($listUsers),
+                    'comment_profile_id' => $faker->randomElement($listCommentsProfiles),
                 ]
             );
         }
 
-        DB::table('pictures')->insert($list);
+        DB::table('reports_comments_profiles')->insert($list);
     }
 }

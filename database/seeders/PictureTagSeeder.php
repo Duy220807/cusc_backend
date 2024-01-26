@@ -24,7 +24,7 @@ class PictureTagSeeder extends Seeder
             array_push(
                 $list,
                 [
-                    'picture_id' => $faker->randomElement($listPictures),
+                    'picture_id' => ($listPictures[$i - 1]),
                     'tag_id' => $faker->randomElement($listTags)
                 ]
             );

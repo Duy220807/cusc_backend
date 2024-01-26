@@ -7,31 +7,30 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PictureTopicSeeder extends Seeder
+class ProductTagSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds
      */
     public function run(): void
     {
+        //
         $faker = Factory::create('en_US');
         $list = [];
 
-        $listPictures = DB::table('pictures')->pluck('id');
-        $listTopics = DB::table('topics')->pluck('id');
-
+        $listProducts = DB::table('products')->pluck('id');
+        $listTags = DB::table('tags_products')->pluck('id');
 
         for ($i = 1; $i <= 20; $i++) {
             array_push(
                 $list,
                 [
-
-                    'picture_id' => ($listPictures[$i - 1]),
-                    'topic_id' => $faker->randomElement($listTopics)
+                    'product_id' => $listProducts[$i - 1],
+                    'tag_id' => $faker->randomElement($listTags)
                 ]
             );
         }
 
-        DB::table('pictures_topics')->insert($list);
+        DB::table('products_tags')->insert($list);
     }
 }

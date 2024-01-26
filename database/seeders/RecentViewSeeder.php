@@ -7,31 +7,31 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PictureTopicSeeder extends Seeder
+class RecentViewSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database seeds
      */
     public function run(): void
     {
+        //
         $faker = Factory::create('en_US');
         $list = [];
 
-        $listPictures = DB::table('pictures')->pluck('id');
-        $listTopics = DB::table('topics')->pluck('id');
-
+        $listUsers = DB::table('users')->pluck('id');
+        $listProduct = DB::table('products')->pluck('id');
 
         for ($i = 1; $i <= 20; $i++) {
             array_push(
                 $list,
                 [
-
-                    'picture_id' => ($listPictures[$i - 1]),
-                    'topic_id' => $faker->randomElement($listTopics)
+                    'id' => $i,
+                    'user_id' => $faker->randomElement($listUsers),
+                    'product_id' => $faker->randomElement($listProduct),
                 ]
             );
         }
 
-        DB::table('pictures_topics')->insert($list);
+        DB::table('recent_views')->insert($list);
     }
 }
