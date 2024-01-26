@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('histories_positions', function (Blueprint $table) {
-
+            $table->increments('id');
             $table->dateTime('start_time');
             $table->dateTime('expire_time');
             $table->timestamps();
@@ -24,8 +24,6 @@ return new class extends Migration
             // Tạo liên kết khóa ngoại
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
-
-            $table->increments('id');
         });
     }
 

@@ -26,7 +26,7 @@ class ProductPictureSeeder extends Seeder
                 $list,
                 [
 
-                    'product_id' => $faker->randomElement($listProducts),
+                    'product_id' => ($listProducts[$i - 1]),
                     'picture_id' => $faker->randomElement($listPictures),
                 ]
             );
