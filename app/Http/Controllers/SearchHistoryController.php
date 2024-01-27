@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\SearchHistory;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class SearchHistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        return User::all();
+        return SearchHistory::all();
     }
 
     /**
@@ -22,7 +22,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        return User::create($request->all());
+        return SearchHistory::create($request->all());
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
-        return User::find($id);
+        return SearchHistory::find($id);
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        return User::find($id)->update($request->all());
+        return SearchHistory::find($id)->update($request->all());
     }
 
     /**
@@ -49,6 +49,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
-        return User::destroy($id);
+        return SearchHistory::destroy($id);
     }
 }
