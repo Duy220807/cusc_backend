@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommentsProfileController;
 use App\Http\Controllers\FollowController;
@@ -30,7 +31,6 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Database\Seeders\HistoryPositionSeeder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,12 +44,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::apiResource('users', UserController::class);
 });
 
+Route::post('signup', [AuthController::class, 'sign_up']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout']);
 
-Route::apiResource('users', UserController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('pictures', PictureController::class);
 Route::apiResource('comments', CommentController::class);
