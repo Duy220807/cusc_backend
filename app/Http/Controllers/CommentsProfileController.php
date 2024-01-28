@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\CommentsProfile;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class CommentsProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        return Order::all();
+        return CommentsProfile::all();
     }
 
     /**
@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
-        return Order::create($request->all());
+        return CommentsProfile::create($request->all());
     }
 
     /**
@@ -31,7 +31,7 @@ class OrderController extends Controller
     public function show(string $id)
     {
         //
-        return Order::find($id);
+        return CommentsProfile::find($id);
     }
 
     /**
@@ -40,7 +40,7 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        return Order::find($id)->update($request->all());
+        return CommentsProfile::find($id)->update($request->all());
     }
 
     /**
@@ -49,6 +49,6 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
-        return Order::destroy($id);
+        return CommentsProfile::destroy($id);
     }
 }

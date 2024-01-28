@@ -8,11 +8,15 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
- * 
+ *
  * @property int $id
  * @property string $username
  * @property string|null $first_name
@@ -33,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $active_code
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Collection|Album[] $albums
  * @property Collection|Comment[] $comments
  * @property Collection|CommentsProfile[] $comments_profiles
@@ -54,124 +58,125 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends Authenticatable
 {
-	protected $table = 'users';
+    use HasApiTokens, HasFactory, Notifiable;
+    protected $table = 'users';
 
-	protected $casts = [
-		'gender' => 'bool',
-		'birthday' => 'datetime',
-		'email_verified_at' => 'datetime',
-		'status' => 'bool'
-	];
+    protected $casts = [
+        'gender' => 'bool',
+        'birthday' => 'datetime',
+        'email_verified_at' => 'datetime',
+        'status' => 'bool'
+    ];
 
-	protected $hidden = [
-		'password',
-		'remember_token'
-	];
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
 
-	protected $fillable = [
-		'username',
-		'first_name',
-		'last_name',
-		'password',
-		'email',
-		'gender',
-		'birthday',
-		'avatar',
-		'phone',
-		'address',
-		'city',
-		'district',
-		'commune',
-		'email_verified_at',
-		'status',
-		'remember_token',
-		'active_code'
-	];
+    protected $fillable = [
+        'username',
+        'first_name',
+        'last_name',
+        'password',
+        'email',
+        'gender',
+        'birthday',
+        'avatar',
+        'phone',
+        'address',
+        'city',
+        'district',
+        'commune',
+        'email_verified_at',
+        'status',
+        'remember_token',
+        'active_code'
+    ];
 
-	public function albums()
-	{
-		return $this->hasMany(Album::class);
-	}
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
 
-	public function comments()
-	{
-		return $this->hasMany(Comment::class);
-	}
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
-	public function comments_profiles()
-	{
-		return $this->hasMany(CommentsProfile::class);
-	}
+    public function comments_profiles()
+    {
+        return $this->hasMany(CommentsProfile::class);
+    }
 
-	public function follows()
-	{
-		return $this->hasMany(Follow::class, 'to_user_id');
-	}
+    public function follows()
+    {
+        return $this->hasMany(Follow::class, 'to_user_id');
+    }
 
-	public function histories_positions()
-	{
-		return $this->hasMany(HistoriesPosition::class);
-	}
+    public function histories_positions()
+    {
+        return $this->hasMany(HistoriesPosition::class);
+    }
 
-	public function likes()
-	{
-		return $this->hasMany(Like::class);
-	}
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
-	public function likes_comments()
-	{
-		return $this->hasMany(LikesComment::class);
-	}
+    public function likes_comments()
+    {
+        return $this->hasMany(LikesComment::class);
+    }
 
-	public function likes_comments_profiles()
-	{
-		return $this->hasMany(LikesCommentsProfile::class);
-	}
+    public function likes_comments_profiles()
+    {
+        return $this->hasMany(LikesCommentsProfile::class);
+    }
 
-	public function pictures()
-	{
-		return $this->hasMany(Picture::class);
-	}
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 
-	public function products()
-	{
-		return $this->hasMany(Product::class);
-	}
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
-	public function recent_views()
-	{
-		return $this->hasMany(RecentView::class);
-	}
+    public function recent_views()
+    {
+        return $this->hasMany(RecentView::class);
+    }
 
-	public function reports_comments()
-	{
-		return $this->hasMany(ReportsComment::class);
-	}
+    public function reports_comments()
+    {
+        return $this->hasMany(ReportsComment::class);
+    }
 
-	public function reports_comments_profiles()
-	{
-		return $this->hasMany(ReportsCommentsProfile::class);
-	}
+    public function reports_comments_profiles()
+    {
+        return $this->hasMany(ReportsCommentsProfile::class);
+    }
 
-	public function reports_pictures()
-	{
-		return $this->hasMany(ReportsPicture::class);
-	}
+    public function reports_pictures()
+    {
+        return $this->hasMany(ReportsPicture::class);
+    }
 
-	public function reports_products()
-	{
-		return $this->hasMany(ReportsProduct::class);
-	}
+    public function reports_products()
+    {
+        return $this->hasMany(ReportsProduct::class);
+    }
 
-	public function reviews()
-	{
-		return $this->hasMany(Review::class);
-	}
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
-	public function search_histories()
-	{
-		return $this->hasMany(SearchHistory::class);
-	}
+    public function search_histories()
+    {
+        return $this->hasMany(SearchHistory::class);
+    }
 }
