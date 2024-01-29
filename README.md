@@ -3,6 +3,8 @@
 > php -v
 ## Chạy project
 ### 1. Vào đường dẫn project
+> tạo file .env
+>> copy .env.example qua .env
 ### 2. Thêm modules
 > npm install
 ### 3. Cập nhật package.json
